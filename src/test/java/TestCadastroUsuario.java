@@ -14,14 +14,15 @@ public class TestCadastroUsuario {
 		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
 		driver.manage().window().maximize();
 		DSL dsl = new DSL(driver);
+		CampoTreinamentoPage page = new CampoTreinamentoPage(driver);
 		Thread.sleep(1000);
-		dsl.escrever("elementosForm:nome", "Nome");
+		page.setNome("Nome");
 		Thread.sleep(1000);
-		dsl.escrever("elementosForm:sobrenome", "Sobrenome");
+		page.setSobrenome("Sobrenome");
 		Thread.sleep(1000);
-		dsl.clicarRadioButton("elementosForm:sexo");
+		page.radioSexoMasculino();
 		Thread.sleep(1000);
-		dsl.clicarCheckBox("elementosForm:comidaFavorita");
+		page.checkBoxCarne();
 		Thread.sleep(1000);
 		dsl.clicarComboSelect("elementosForm:escolaridade", 4);
 		Thread.sleep(1000);
@@ -31,7 +32,7 @@ public class TestCadastroUsuario {
 		selectEsportes.selectByIndex(2);
 		selectEsportes.selectByIndex(3);
 		Thread.sleep(1000);
-		driver.findElement(By.id("elementosForm:cadastrar")).click();
+		dsl.clicarBotao("elementosForm:cadastrar");
 		Thread.sleep(1000);
 		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
 		Assert.assertTrue(driver.findElement(By.id("descNome")).getText().endsWith("Nome"));

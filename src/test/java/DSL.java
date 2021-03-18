@@ -62,4 +62,13 @@ public class DSL {
 	public String obterTexto(String id) {
 		return obterTexto(By.id(id));
 	}
+	
+	public void irParaframe(String id_frame) {
+		driver.switchTo().frame(id_frame);
+	}
+	
+	public void voltarParaTelaDefault() {
+		driver.switchTo().defaultContent();
+	}
+
 }

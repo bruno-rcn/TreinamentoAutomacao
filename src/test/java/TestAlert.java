@@ -10,12 +10,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class TestAlert {
 	
 	private WebDriver driver;
+	private DSL dsl;
 	
 	@Before
 	public void inicializa() {
 		driver = new ChromeDriver();
 		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
 		driver.manage().window().maximize();
+		dsl = new DSL(driver);
 	}
 	
 	@After
@@ -26,7 +28,7 @@ public class TestAlert {
 	
 	@Test
 	public void acionarAlertSimples() throws InterruptedException {
-		driver.findElement(By.id("alert")).click();
+		dsl.clicarBotao("alert");
 		Alert alerta = driver.switchTo().alert();
 		Thread.sleep(1000);
 		Assert.assertEquals("Alert Simples", alerta.getText());

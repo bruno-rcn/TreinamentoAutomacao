@@ -2,21 +2,20 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TextAreaAndField {
 	
 	private WebDriver driver;
-	private DSL dsl;
+	private CampoTreinamentoPage page;
 	
 	@Before
 	public void inicializa() {
 		driver = new ChromeDriver();
 		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
 		driver.manage().window().maximize();
-		dsl = new DSL(driver);
+		page = new CampoTreinamentoPage(driver);
 	}
 	
 	@After
@@ -26,23 +25,23 @@ public class TextAreaAndField {
 
 	@Test
 	public void textFieldNome() throws InterruptedException {
-		dsl.escrever("elementosForm:nome", "Primeiro nome");
+		page.setNome("Primeiro nome");
 		Thread.sleep(1000);
-		Assert.assertEquals("Primeiro nome", dsl.obterValorDoCampo("elementosForm:nome"));
+		Assert.assertEquals("Primeiro nome", page.verificarTextoNome());
 	}
 	
 	@Test
 	public void textFieldSobrenome() throws InterruptedException {
-		driver.findElement(By.name("elementosForm:sobrenome")).sendKeys("Ultimo nome");
+		page.setSobrenome("Ultimo nome");
 		Thread.sleep(1000);
-		Assert.assertEquals("Ultimo nome", driver.findElement(By.name("elementosForm:sobrenome")).getAttribute("value"));
+		Assert.assertEquals("Ultimo nome", page.verificarTextoSobrenome());
 	}
 	
 	@Test
 	public void textAreaSugestoes() throws InterruptedException {
-		dsl.escrever("elementosForm:sugestoes", "Escrevendo \n texto \n pulando \n linha \n\n fim");
+		page.setTexto("Escrevendo \n texto \n pulando \n linha \n\n fim");
 		Thread.sleep(1000);
-		Assert.assertEquals("Escrevendo \n texto \n pulando \n linha \n\n fim", dsl.obterValorDoCampo("elementosForm:sugestoes"));
+		Assert.assertEquals("Escrevendo \n texto \n pulando \n linha \n\n fim", page.verificarTextoArea());
 	}
 	
 }
