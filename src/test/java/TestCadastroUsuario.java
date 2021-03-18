@@ -36,8 +36,6 @@ public class TestCadastroUsuario {
 		Thread.sleep(1000);
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Thread.sleep(1000);
-		
-		
 		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
 		Assert.assertTrue(driver.findElement(By.id("descNome")).getText().endsWith("Nome"));
 		Assert.assertEquals("Sobrenome: Sobrenome", driver.findElement(By.id("descSobrenome")).getText());
@@ -45,8 +43,6 @@ public class TestCadastroUsuario {
 		Assert.assertEquals("Comida: Carne", driver.findElement(By.id("descComida")).getText());
 		Assert.assertEquals("Escolaridade: superior", driver.findElement(By.id("descEscolaridade")).getText());
 		Assert.assertEquals("Esportes: Futebol Corrida Karate", driver.findElement(By.id("descEsportes")).getText());
-		
-		
 		driver.quit();
 	}
 	
