@@ -1,21 +1,21 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestButton {
+
+	private DSL dsl;
 	
 	@Test
-	public void radioButton() throws InterruptedException {
+	public void clicarBotao() throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
 		driver.manage().window().maximize();
-		WebElement botao = driver.findElement(By.id("buttonSimple"));
-		botao.click();
+		dsl = new DSL(driver);
+		dsl.clicarBotao("buttonSimple");
 		Thread.sleep(1000);
-		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
+		Assert.assertEquals("Obrigado!", dsl.obterValorDoCampo("buttonSimple"));
 		driver.quit();
 	}
 }

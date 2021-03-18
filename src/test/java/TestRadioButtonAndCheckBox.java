@@ -9,12 +9,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class TestRadioButtonAndCheckBox {
 	
 	private WebDriver driver;
+	private DSL dsl;
 	
 	@Before
 	public void inicializa() {
 		driver = new ChromeDriver();
 		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
 		driver.manage().window().maximize();
+		dsl = new DSL(driver);
 	}
 	
 	@After
@@ -24,9 +26,9 @@ public class TestRadioButtonAndCheckBox {
 
 	@Test
 	public void radioButton() throws InterruptedException {
-		driver.findElement(By.id("elementosForm:sexo:0")).click();
+		dsl.clicarRadioButton("elementosForm:sexo:0");
 		Thread.sleep(1000);
-		Assert.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
+		Assert.assertTrue(dsl.isRadioSelected("elementosForm:sexo:0"));
 	}
 	
 	@Test

@@ -13,12 +13,14 @@ import org.openqa.selenium.support.ui.Select;
 public class TestComboSelect {
 	
 	private WebDriver driver;
+	private DSL dsl;
 	
 	@Before
 	public void inicializa() {
 		driver = new ChromeDriver();
 		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
 		driver.manage().window().maximize();
+		dsl = new DSL(driver);
 	}
 	
 	@After
@@ -28,11 +30,9 @@ public class TestComboSelect {
 
 	@Test
 	public void comboSelectEscolaridade() throws InterruptedException {
-		WebElement comboEscolaridade = driver.findElement(By.id("elementosForm:escolaridade"));
-		Select selectEscolaridade = new Select(comboEscolaridade);
-		selectEscolaridade.selectByIndex(1);
+		dsl.clicarComboSelect("elementosForm:escolaridade", 1);
 		Thread.sleep(1000);
-		Assert.assertEquals("1graucomp", driver.findElement(By.id("elementosForm:escolaridade")).getAttribute("value"));
+		Assert.assertEquals("1graucomp", dsl.obterValorDoCombo("elementosForm:escolaridade"));
 	}
 	
 	@Test

@@ -1,5 +1,3 @@
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -15,18 +13,17 @@ public class TestCadastroUsuario {
 		WebDriver driver = new ChromeDriver();
 		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
 		driver.manage().window().maximize();
+		DSL dsl = new DSL(driver);
 		Thread.sleep(1000);
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
+		dsl.escrever("elementosForm:nome", "Nome");
 		Thread.sleep(1000);
-		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Sobrenome");
+		dsl.escrever("elementosForm:sobrenome", "Sobrenome");
 		Thread.sleep(1000);
-		driver.findElement(By.id("elementosForm:sexo")).click();
+		dsl.clicarRadioButton("elementosForm:sexo");
 		Thread.sleep(1000);
-		driver.findElement(By.name("elementosForm:comidaFavorita")).click();
+		dsl.clicarCheckBox("elementosForm:comidaFavorita");
 		Thread.sleep(1000);
-		WebElement escolaridade = driver.findElement(By.id("elementosForm:escolaridade"));
-		Select selectEscolaridade = new Select(escolaridade);
-		selectEscolaridade.selectByIndex(4);
+		dsl.clicarComboSelect("elementosForm:escolaridade", 4);
 		Thread.sleep(1000);
 		WebElement esportes = driver.findElement(By.id("elementosForm:esportes"));
 		Select selectEsportes = new Select(esportes);
