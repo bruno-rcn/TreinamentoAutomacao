@@ -1,4 +1,6 @@
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -7,23 +9,31 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestAlert {
 	
-	@Test
-	public void acionarAlertSimples() throws InterruptedException {
-		WebDriver driver = new ChromeDriver();
+	private WebDriver driver;
+	
+	@Before
+	public void inicializa() {
+		driver = new ChromeDriver();
 		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
 		driver.manage().window().maximize();
+	}
+	
+	@After
+	public void finaliza() {
+		driver.quit();
+	}
+	
+	
+	@Test
+	public void acionarAlertSimples() throws InterruptedException {
 		driver.findElement(By.id("alert")).click();
 		Alert alerta = driver.switchTo().alert();
 		Thread.sleep(1000);
 		Assert.assertEquals("Alert Simples", alerta.getText());
-		driver.quit();
 	}
 	
 	@Test
 	public void acionarAlertConfirmar() throws InterruptedException {
-		WebDriver driver = new ChromeDriver();
-		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
-		driver.manage().window().maximize();
 		driver.findElement(By.id("confirm")).click();
 		Alert alerta = driver.switchTo().alert();
 		Thread.sleep(1000);
@@ -33,15 +43,11 @@ public class TestAlert {
 		Assert.assertEquals("Confirmado", alerta.getText());
 		alerta.accept();
 		Thread.sleep(1000);
-		driver.quit();
 	}
 	
 	
 	@Test
 	public void acionarAlertNegar() throws InterruptedException {
-		WebDriver driver = new ChromeDriver();
-		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
-		driver.manage().window().maximize();
 		driver.findElement(By.id("confirm")).click();
 		Alert alerta = driver.switchTo().alert();
 		Thread.sleep(1000);
@@ -51,14 +57,10 @@ public class TestAlert {
 		Assert.assertEquals("Negado", alerta.getText());
 		alerta.accept();
 		Thread.sleep(1000);
-		driver.quit();
 	}
 	
 	@Test
 	public void acionarAlertPrompt() throws InterruptedException {
-		WebDriver driver = new ChromeDriver();
-		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
-		driver.manage().window().maximize();
 		driver.findElement(By.id("prompt")).click();
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Digite um numero", alerta.getText());
@@ -70,7 +72,6 @@ public class TestAlert {
 		alerta.accept();
 		Thread.sleep(1000);
 		Assert.assertEquals(":D", alerta.getText());
-		driver.quit();
 	}
 
 }
