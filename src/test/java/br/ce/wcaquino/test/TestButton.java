@@ -1,4 +1,4 @@
-package br.ce.wcaquino;
+package br.ce.wcaquino.test;
 
 import static br.ce.wcaquino.core.DriverFactory.getDriver;
 import static br.ce.wcaquino.core.DriverFactory.killDriver;
@@ -14,7 +14,7 @@ public class TestButton {
 	
 	@Test
 	public void clicarBotao() throws InterruptedException {
-		getDriver().get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
+		getDriver().get("C:\\Projects - estudo\\TreinamentoAutomacao\\src\\main\\resources\\br\\ce\\wcaquino\\componentes.html");
 		dsl = new DSL();
 		dsl.clicarBotao("buttonSimple");
 		Thread.sleep(1000);

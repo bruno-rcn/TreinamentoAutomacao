@@ -1,4 +1,4 @@
-package br.ce.wcaquino;
+package br.ce.wcaquino.test;
 
 
 import static br.ce.wcaquino.core.DriverFactory.killDriver;
@@ -7,12 +7,13 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 
 import br.ce.wcaquino.core.DSL;
+import br.ce.wcaquino.page.CampoTreinamentoPage;
 
 public class TestFrame {
 	
 	@Test
 	public void clicarFrame() throws InterruptedException {
-		getDriver().get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
+		getDriver().get("C:\\Projects - estudo\\TreinamentoAutomacao\\src\\main\\resources\\br\\ce\\wcaquino\\componentes.html");
 		DSL dsl = new DSL();
 		CampoTreinamentoPage page = new CampoTreinamentoPage();
 		Thread.sleep(1000);

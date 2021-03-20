@@ -1,4 +1,4 @@
-package br.ce.wcaquino;
+package br.ce.wcaquino.test;
 
 import static br.ce.wcaquino.core.DriverFactory.getDriver;
 import static br.ce.wcaquino.core.DriverFactory.killDriver;
@@ -9,18 +9,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import br.ce.wcaquino.core.DSL;
 
 public class TestAlert {
 	
-	private WebDriver driver;
 	private DSL dsl;
 	
 	@Before
 	public void inicializa() {
-		getDriver().get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
+		getDriver().get("C:\\Projects - estudo\\TreinamentoAutomacao\\src\\main\\resources\\br\\ce\\wcaquino\\componentes.html");
 		dsl = new DSL();
 	}
 	
@@ -33,15 +31,15 @@ public class TestAlert {
 	@Test
 	public void acionarAlertSimples() throws InterruptedException {
 		dsl.clicarBotao("alert");
-		Alert alerta = driver.switchTo().alert();
+		Alert alerta = getDriver().switchTo().alert();
 		Thread.sleep(1000);
 		Assert.assertEquals("Alert Simples", alerta.getText());
 	}
 	
 	@Test
 	public void acionarAlertConfirmar() throws InterruptedException {
-		driver.findElement(By.id("confirm")).click();
-		Alert alerta = driver.switchTo().alert();
+		getDriver().findElement(By.id("confirm")).click();
+		Alert alerta = getDriver().switchTo().alert();
 		Thread.sleep(1000);
 		Assert.assertEquals("Confirm Simples", alerta.getText());
 		alerta.accept();
@@ -54,8 +52,8 @@ public class TestAlert {
 	
 	@Test
 	public void acionarAlertNegar() throws InterruptedException {
-		driver.findElement(By.id("confirm")).click();
-		Alert alerta = driver.switchTo().alert();
+		getDriver().findElement(By.id("confirm")).click();
+		Alert alerta = getDriver().switchTo().alert();
 		Thread.sleep(1000);
 		Assert.assertEquals("Confirm Simples", alerta.getText());
 		alerta.dismiss();
@@ -67,8 +65,8 @@ public class TestAlert {
 	
 	@Test
 	public void acionarAlertPrompt() throws InterruptedException {
-		driver.findElement(By.id("prompt")).click();
-		Alert alerta = driver.switchTo().alert();
+		getDriver().findElement(By.id("prompt")).click();
+		Alert alerta = getDriver().switchTo().alert();
 		Assert.assertEquals("Digite um numero", alerta.getText());
 		alerta.sendKeys("123");
 		Thread.sleep(1000);

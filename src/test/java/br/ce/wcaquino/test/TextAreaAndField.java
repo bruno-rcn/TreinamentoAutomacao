@@ -1,4 +1,4 @@
-package br.ce.wcaquino;
+package br.ce.wcaquino.test;
 
 import static br.ce.wcaquino.core.DriverFactory.getDriver;
 import static br.ce.wcaquino.core.DriverFactory.killDriver;
@@ -7,13 +7,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.ce.wcaquino.page.CampoTreinamentoPage;
+
 public class TextAreaAndField {
 	
 	private CampoTreinamentoPage page;
 	
 	@Before
 	public void inicializa() {
-		getDriver().get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
+		getDriver().get("C:\\Projects - estudo\\TreinamentoAutomacao\\src\\main\\resources\\br\\ce\\wcaquino\\componentes.html");
+		page = new CampoTreinamentoPage();
 	}
 	
 	@After

@@ -1,4 +1,4 @@
-package br.ce.wcaquino;
+package br.ce.wcaquino.test;
 
 
 import static br.ce.wcaquino.core.DriverFactory.getDriver;
@@ -23,7 +23,7 @@ public class TestComboSelect {
 	
 	@Before
 	public void inicializa() {
-		getDriver().get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
+		getDriver().get("C:\\Projects - estudo\\TreinamentoAutomacao\\src\\main\\resources\\br\\ce\\wcaquino\\componentes.html");
 		dsl = new DSL();
 	}
 	
@@ -36,12 +36,12 @@ public class TestComboSelect {
 	public void comboSelectEscolaridade() throws InterruptedException {
 		dsl.clicarComboSelect("elementosForm:escolaridade", 1);
 		Thread.sleep(1000);
-		Assert.assertEquals("1graucomp", dsl.obterValorDoCombo("elementosForm:escolaridade"));
+		Assert.assertEquals("1o grau completo", dsl.obterValorDoCombo("elementosForm:escolaridade"));
 	}
 	
 	@Test
 	public void comboSelectMultiplasOpcoesEsportes() throws InterruptedException {
-		WebElement comboEsportes = driver.findElement(By.id("elementosForm:esportes"));
+		WebElement comboEsportes = getDriver().findElement(By.id("elementosForm:esportes"));
 		Select selectEsportes = new Select(comboEsportes);
 		selectEsportes.selectByIndex(0);
 		selectEsportes.selectByIndex(2);
