@@ -1,11 +1,14 @@
-import org.openqa.selenium.WebDriver;
+package br.ce.wcaquino;
+
+
+import br.ce.wcaquino.core.DSL;
 
 public class CampoTreinamentoPage {
 	
 	private DSL dsl;
 	
-	public CampoTreinamentoPage(WebDriver driver) {
-		dsl = new DSL(driver);
+	public CampoTreinamentoPage() {
+		dsl = new DSL();
 	}
 	
 	/*************** CAMPO DE TEXTO ***************/

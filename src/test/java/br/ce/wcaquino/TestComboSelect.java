@@ -1,3 +1,8 @@
+package br.ce.wcaquino;
+
+
+import static br.ce.wcaquino.core.DriverFactory.getDriver;
+import static br.ce.wcaquino.core.DriverFactory.killDriver;
 import java.util.List;
 
 import org.junit.After;
@@ -7,8 +12,9 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import br.ce.wcaquino.core.DSL;
 
 public class TestComboSelect {
 	
@@ -17,15 +23,13 @@ public class TestComboSelect {
 	
 	@Before
 	public void inicializa() {
-		driver = new ChromeDriver();
-		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
-		driver.manage().window().maximize();
-		dsl = new DSL(driver);
+		getDriver().get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
+		dsl = new DSL();
 	}
 	
 	@After
 	public void finaliza() {
-		driver.quit();
+		killDriver();
 	}
 
 	@Test

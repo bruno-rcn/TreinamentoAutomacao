@@ -1,3 +1,8 @@
+package br.ce.wcaquino;
+
+import static br.ce.wcaquino.core.DriverFactory.getDriver;
+import static br.ce.wcaquino.core.DriverFactory.killDriver;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -5,7 +10,8 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import br.ce.wcaquino.core.DSL;
 
 public class TestAlert {
 	
@@ -14,15 +20,13 @@ public class TestAlert {
 	
 	@Before
 	public void inicializa() {
-		driver = new ChromeDriver();
-		driver.get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
-		driver.manage().window().maximize();
-		dsl = new DSL(driver);
+		getDriver().get("C:\\Projects - estudo\\AutomacaoSeleniumPuro\\src\\main\\resources\\componentes.html");
+		dsl = new DSL();
 	}
 	
 	@After
 	public void finaliza() {
-		driver.quit();
+		killDriver();
 	}
 	
 	
